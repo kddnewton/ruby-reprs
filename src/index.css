@@ -1,0 +1,13 @@
+html, body {
+  font-family: "Source Serif Pro", serif;
+  font-size: 16px;
+  height: 100vh;
+  margin: 0;
+}
+
+main {
+  display: grid;
+  height: 100%;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto minmax(0, 1fr);
+}

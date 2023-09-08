@@ -1,0 +1,44 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    ast (2.4.2)
+    mustermann (3.0.0)
+      ruby2_keywords (~> 0.0.1)
+    nio4r (2.5.9)
+    parser (3.2.2.3)
+      ast (~> 2.4.1)
+      racc
+    prettier_print (1.2.1)
+    puma (6.3.1)
+      nio4r (~> 2.0)
+    racc (1.7.1)
+    rack (2.2.8)
+    rack-protection (3.1.0)
+      rack (~> 2.2, >= 2.2.4)
+    ruby2_keywords (0.0.5)
+    ruby_parser (3.20.3)
+      sexp_processor (~> 4.16)
+    sexp_processor (4.17.0)
+    sinatra (3.1.0)
+      mustermann (~> 3.0)
+      rack (~> 2.2, >= 2.2.4)
+      rack-protection (= 3.1.0)
+      tilt (~> 2.0)
+    syntax_tree (6.1.1)
+      prettier_print (>= 1.2.0)
+    tilt (2.2.0)
+    yarp (0.8.0)
+
+PLATFORMS
+  arm64-darwin-22
+
+DEPENDENCIES
+  parser
+  puma
+  ruby_parser
+  sinatra
+  syntax_tree
+  yarp
+
+BUNDLED WITH
+   2.4.10
