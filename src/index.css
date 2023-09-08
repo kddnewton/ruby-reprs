@@ -1,13 +1,70 @@
+:root {
+  --box-shadow: 0 1px 2px 0 #888;
+}
+
 html, body {
   font-family: "Source Serif Pro", serif;
   font-size: 16px;
   height: 100vh;
   margin: 0;
+  padding: 0;
 }
 
 main {
   display: grid;
   height: 100%;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 40% 60%;
   grid-template-rows: auto minmax(0, 1fr);
+}
+
+nav {
+  background-color: #fafafa;
+  box-shadow: var(--box-shadow);
+  box-sizing: border-box;
+  display: flex;
+  grid-column: 1 / span 2;
+  padding: 0.5em;
+  z-index: 1;
+}
+
+nav h1 {
+  font-size: 1.2em;
+  font-weight: initial;
+  margin: 0;
+  padding: 0 1em;
+}
+
+textarea {
+  padding-left: 4em;
+}
+
+form {
+  box-sizing: border-box;
+}
+
+h2 {
+  background-color: #e8e8e8;
+  box-shadow: var(--box-shadow);
+  font-size: 1.2em;
+  font-weight: initial;
+  margin: 0;
+  padding: 0.2em 0.5em;
+}
+
+h2 + pre {
+  margin: 0;
+  padding: 1em;
+}
+
+input[type="checkbox"] {
+  float: left;
+  margin: 0.7em 0.5em 0.5em 0.5em;
+}
+
+input[type="checkbox"] + h2 + pre {
+  display: none;
+}
+
+input[type="checkbox"]:checked + h2 + pre {
+  display: block;
 }

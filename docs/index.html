@@ -4,14 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=5">
     <title>Ruby Representations</title>
+    <link rel="icon" href="favicon.svg">
+    <link rel="stylesheet" type="text/css" href="index.css">
   </head>
   <body>
     <main>
-      <textarea id="editor">def fibonacci(n)
-  (n == 0 || n == 1) ? n : fibonacci(n - 1) + fibonacci(n - 2)
-end
+      <nav>
+        <h1>Ruby Representations</h1>
+      </nav>
+      <textarea id="input">def fibonacci(n)
+  case n
+  when 0
+    0
+  when 1
+    1
+  else
+    fibonacci(n - 1) + fibonacci(n - 2)
+  end
+end      
 </textarea>
-      <div id="output">Loading...</div>
+      <form id="output" method="POST" action="javascript:void(0)">
+        <section data-id="P">
+          <input id="P" name="P" type="checkbox" />
+          <h2><label for="P"><code>Parser::CurrentRuby.parse(source)</code></label></h2>
+          <pre>Loading...</pre>
+        </section>
+        <section data-id="PL">
+          <input id="PL" name="PL" type="checkbox" />
+          <h2><label for="PL"><code>Parser::Lexer.new(32).tokens</code></label></h2>
+          <pre>Loading...</pre>
+        </section>
+        <section data-id="RL">
+          <input id="RL" name="RL" type="checkbox" />
+          <h2><label for="RL"><code>Ripper.lex(source)</code></label></h2>
+          <pre>Loading...</pre>
+        </section>
+        <section data-id="RSR">
+          <input id="RSR" name="RSR" type="checkbox" />
+          <h2><label for="RSR"><code>Ripper.sexp_raw(source)</code></label></h2>
+          <pre>Loading...</pre>
+        </section>
+        <section data-id="RS">
+          <input id="RS" name="RS" type="checkbox" />
+          <h2><label for="RS"><code>Ripper.sexp(source)</code></label></h2>
+          <pre>Loading...</pre>
+        </section>
+        <section data-id="RVA">
+          <input id="RVA" name="RVA" type="checkbox" />
+          <h2><label for="RVA"><code>RubyVM::AbstractSyntaxTree.parse(source)</code></label></h2>
+          <pre>Loading...</pre>
+        </section>
+        <section data-id="RP">
+          <input id="RP" name="RP" type="checkbox" />
+          <h2><label for="RP"><code>RubyParser.new.parse(source)</code></label></h2>
+          <pre>Loading...</pre>
+        </section>
+        <section data-id="ST">
+          <input id="ST" name="ST" type="checkbox" />
+          <h2><label for="ST"><code>SyntaxTree.parse(source)</code></label></h2>
+          <pre>Loading...</pre>
+        </section>
+        <section data-id="Y">
+          <input id="Y" name="Y" type="checkbox" />
+          <h2><label for="Y"><code>YARP.parse(source).value</code></label></h2>
+          <pre>Loading...</pre>
+        </section>
+        <section data-id="YL">
+          <input id="YL" name="YL" type="checkbox" />
+          <h2><label for="YL"><code>YARP.lex(source).value</code></label></h2>
+          <pre>Loading...</pre>
+        </section>
+      </article>
     </main>
     <script type="module" src="index.js"></script>
   </body>

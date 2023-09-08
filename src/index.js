@@ -1,5 +1,7 @@
 import "./index.css"
 
+// A generic debounce function to ensure we don't spam the server with requests
+// while the user is typing.
 function debounce(callback, wait) {
   let timeout = null;
 
@@ -9,20 +11,11 @@ function debounce(callback, wait) {
   };
 }
 
-const headings = {
-  RSR: "Ripper.sexp_raw(source)",
-  RS: "Ripper.sexp(source)",
-  RVA: "RubyVM::AbstractSyntaxTree.parse(source)",
-  P: "Parser::CurrentRuby.parse(source)",
-  RP: "RubyParser.new.parse(source)",
-  ST: "SyntaxTree.parse(source)",
-  Y: "YARP.parse(source).value"
-};
-
 import("./monacoLoader")
   .then(async ({ default: loader }) => {
     const monaco = await loader.init();
-    const editor = document.getElementById("editor");
+    const editor = document.getElementById("input");
+
     const newEditor = document.createElement("div");
     editor.replaceWith(newEditor);
 
@@ -35,35 +28,32 @@ import("./monacoLoader")
     });
   })
   .then((editor) => {
-    const output = document.querySelector("#output");
+    const output = document.getElementById("output");
 
     // We're going to handle updates to the source through a custom event. This
     // turns out to be faster than handling the change event directly on the
     // editor since it blocks updates to the UI until the event handled returns.
-    output.addEventListener("source-changed", debounce((event) => {
-      const body = JSON.stringify({
-        code: event.detail.source,
-        types: ["RSR", "RS", "RVA", "P", "RP", "ST", "Y"]
-      });
-
-      fetch("http://localhost:4567", { method: "POST", body })
+    output.addEventListener("code-change", debounce((event) => {
+      fetch("http://localhost:4567", { method: "POST", body: JSON.stringify(event.detail) })
         .then((response) => response.json())
         .then((data) => {
-          output.innerHTML = "";
-
-          for (const [key, value] of Object.entries(data)) {
-            const div = document.createElement("div");
-            div.innerHTML = `<h2><code>${headings[key]}</code></h2><pre>${value}</pre>`;
-            output.appendChild(div);
+          for (const [id, value] of Object.entries(data)) {
+            output.querySelector(`[data-id="${id}"]`).querySelector("pre").textContent = value;
           }
         });
     }, 500));
 
-    // Attach to the editor and dispatch custom source-changed events whenever the
-    // value is updated in the editor.
-    editor.onDidChangeModelContent(() => {
-      output.dispatchEvent(new CustomEvent("source-changed", {
-        detail: { source: editor.getValue() }
+    // This function is responsible for dispatching a custom event that we will
+    // handle for whenever the editor changes or something in the form changes.
+    function dispatchCodeChange() {
+      output.dispatchEvent(new CustomEvent("code-change", {
+        detail: {
+          code: editor.getValue(),
+          types: Object.keys(Object.fromEntries(new FormData(output).entries()))
+        }
       }));
-    });
+    }
+
+    editor.onDidChangeModelContent(dispatchCodeChange);
+    output.addEventListener("change", dispatchCodeChange);
   });
