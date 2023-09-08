@@ -34,7 +34,7 @@ import("./monacoLoader")
     // turns out to be faster than handling the change event directly on the
     // editor since it blocks updates to the UI until the event handled returns.
     output.addEventListener("code-change", debounce((event) => {
-      fetch("http://localhost:4567", { method: "POST", body: JSON.stringify(event.detail) })
+      fetch(process.env.SERVER_URL, { method: "POST", body: JSON.stringify(event.detail) })
         .then((response) => response.json())
         .then((data) => {
           for (const [id, value] of Object.entries(data)) {

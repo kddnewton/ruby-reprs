@@ -6,6 +6,9 @@ const outdir = url.fileURLToPath(new URL("../docs", import.meta.url));
 
 const { metafile } = await esbuild.build({
   bundle: true,
+  define: {
+    "process.env.SERVER_URL": `"http://localhost:4567"`
+  },
   entryPoints: [entryPoint],
   format: "esm",
   metafile: true,
