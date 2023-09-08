@@ -24,52 +24,52 @@
 end      
 </textarea>
       <form id="output" method="POST" action="javascript:void(0)">
-        <section data-id="P">
+        <section data-id="P" data-order="0">
           <input id="P" name="P" type="checkbox" />
           <h2><label for="P"><code>Parser::CurrentRuby.parse(source)</code></label></h2>
           <pre>Loading...</pre>
         </section>
-        <section data-id="PL">
+        <section data-id="PL" data-order="1">
           <input id="PL" name="PL" type="checkbox" />
           <h2><label for="PL"><code>Parser::Lexer.new(32).tokens</code></label></h2>
           <pre>Loading...</pre>
         </section>
-        <section data-id="RL">
+        <section data-id="RL" data-order="2">
           <input id="RL" name="RL" type="checkbox" />
           <h2><label for="RL"><code>Ripper.lex(source)</code></label></h2>
           <pre>Loading...</pre>
         </section>
-        <section data-id="RSR">
+        <section data-id="RSR" data-order="3">
           <input id="RSR" name="RSR" type="checkbox" />
           <h2><label for="RSR"><code>Ripper.sexp_raw(source)</code></label></h2>
           <pre>Loading...</pre>
         </section>
-        <section data-id="RS">
+        <section data-id="RS" data-order="4">
           <input id="RS" name="RS" type="checkbox" />
           <h2><label for="RS"><code>Ripper.sexp(source)</code></label></h2>
           <pre>Loading...</pre>
         </section>
-        <section data-id="RVA">
+        <section data-id="RVA" data-order="5">
           <input id="RVA" name="RVA" type="checkbox" />
           <h2><label for="RVA"><code>RubyVM::AbstractSyntaxTree.parse(source)</code></label></h2>
           <pre>Loading...</pre>
         </section>
-        <section data-id="RP">
+        <section data-id="RP" data-order="6">
           <input id="RP" name="RP" type="checkbox" />
           <h2><label for="RP"><code>RubyParser.new.parse(source)</code></label></h2>
           <pre>Loading...</pre>
         </section>
-        <section data-id="ST">
+        <section data-id="ST" data-order="7">
           <input id="ST" name="ST" type="checkbox" />
           <h2><label for="ST"><code>SyntaxTree.parse(source)</code></label></h2>
           <pre>Loading...</pre>
         </section>
-        <section data-id="Y">
+        <section data-id="Y" data-order="8">
           <input id="Y" name="Y" type="checkbox" />
           <h2><label for="Y"><code>YARP.parse(source).value</code></label></h2>
           <pre>Loading...</pre>
         </section>
-        <section data-id="YL">
+        <section data-id="YL" data-order="9">
           <input id="YL" name="YL" type="checkbox" />
           <h2><label for="YL"><code>YARP.lex(source).value</code></label></h2>
           <pre>Loading...</pre>

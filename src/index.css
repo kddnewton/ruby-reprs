@@ -40,6 +40,8 @@ textarea {
 
 form {
   box-sizing: border-box;
+  display: flex;
+  flex-flow: column;
 }
 
 h2 {

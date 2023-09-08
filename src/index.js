@@ -54,6 +54,31 @@ import("./monacoLoader")
       }));
     }
 
+    // Attach event listeners to fire off requests whenever the code or an
+    // element within the form changes.
     editor.onDidChangeModelContent(dispatchCodeChange);
     output.addEventListener("change", dispatchCodeChange);
+
+    // Also attach event listeners to reorder the form elements whenever the
+    // user activates one.
+    const orderable = Array.from(output.querySelectorAll("[data-order]"));
+
+    output.addEventListener("change", () => {
+      const nextOrderable = [...orderable].sort((left, right) => {
+        if (left.querySelector("input:checked") && !right.querySelector("input:checked")) {
+          return -1;
+        }
+
+        if (!left.querySelector("input:checked") && right.querySelector("input:checked")) {
+          return 1;
+        }
+
+        return parseInt(left.dataset["order"], 10) - parseInt(right.dataset["order"], 10);
+      });
+
+      console.log(nextOrderable.map((elem) => elem.dataset["order"]));
+      for (const element of nextOrderable) {
+        element.style.order = nextOrderable.indexOf(element);
+      }
+    });
   });
