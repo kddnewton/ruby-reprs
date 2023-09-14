@@ -76,7 +76,6 @@ import("./monacoLoader")
         return parseInt(left.dataset["order"], 10) - parseInt(right.dataset["order"], 10);
       });
 
-      console.log(nextOrderable.map((elem) => elem.dataset["order"]));
       for (const element of nextOrderable) {
         element.style.order = nextOrderable.indexOf(element);
       }
