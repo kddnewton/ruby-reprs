@@ -27,7 +27,7 @@ GEM
     syntax_tree (6.1.1)
       prettier_print (>= 1.2.0)
     tilt (2.2.0)
-    yarp (0.8.0)
+    yarp (0.11.0)
 
 PLATFORMS
   arm64-darwin-22
